@@ -12,19 +12,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
             }
-        })
+        });
     }
 
     runGame("addition");
 })
+
 /**
  * The main game "loop" called when the script is first loaded
  * and after the user's answer has been processed
  */
 function runGame(gameType){
+
     // Create two random numbers between 1 and 25
-    let num1 = Math.floor(Math.random()*25) +1 ;
-    let num2 = Math.floor(Math.random()*25) +1 ;
+
+    let num1 = Math.floor(Math.random()* 25) +1 ;
+    let num2 = Math.floor(Math.random()* 25) +1 ;
 
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
@@ -37,16 +40,18 @@ function runGame(gameType){
 
 /**
  * Checks the answer against the first element in
- * the returned calculatedCorrectAnswer array
+ * the returned calculateCorrectAnswer array
  */
+
+
 function checkAnswer() {
 
     let userAnswer = parseInt(document.getElementById("answer-box").value);
-    let calculatedAnswer = calculatedCorrectAnswer();
+    let calculatedAnswer = calculateCorrectAnswer();
     let isCorrect = userAnswer === calculatedAnswer[0];
 
     if (isCorrect) {
-        alert("Hey you got it right :D");
+        alert("Hey! you got it right :D");
     } else {
         alert(`Awww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
 
@@ -62,19 +67,16 @@ function checkAnswer() {
  */
 
 
-function CalculateCorrectAnswer() {
-    let operand1 = parent(document.getElementById('operand1').innerText);
-    let operand2 = parent(document.getElementById('operand2').innerText);
-    let operator = document.getElementById('operator').innerText;
+function calculateCorrectAnswer() {
+    let operand1 = parseInt(document.getElementById('operand1').innerText);
+    let operand2 = parseInt(document.getElementById('operand2').innerText);
+    let operator = document.getElementById("operator").innerText;
 
-    if ( operator === '+') {
-        return [ operand1 + operand2, "addition"];
+    if ( operator === "+") {
+        return [operand1 + operand2, "addition"];
     } else {
-        alert(`unimplemented operator ${operator}`);
-        throw `unimplemented operator${operator}. Aborting!`;
-    }
-
-
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}. Aborting!`;
     }
 
 
